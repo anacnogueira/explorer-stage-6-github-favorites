@@ -17,7 +17,7 @@
       <header>
         <h1>Github Favorites</h1>
         <div class="search">
-          <label class="sr-aonly" for="input-search">Usuário do Github</label>
+          <label class="sr-only" for="input-search">Usuário do Github</label>
           <input
             id="input-search"
             type="text"
@@ -31,7 +31,7 @@
           <tr>
             <th>Usuário</th>
             <th>Repositórios</th>
-            <th>Usuários</th>
+            <th>Seguidores</th>
             <th></th>
           </tr>
         </thead>
@@ -49,7 +49,9 @@
             </td>
             <td class="repositories">50</td>
             <td class="followers">100</td>
-            <td>&times;</td>
+            <td>
+              <button class="remove">&times;</button>
+            </td>
           </tr>
         </tbody>
       </table>
