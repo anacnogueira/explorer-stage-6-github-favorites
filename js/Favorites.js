@@ -20,6 +20,11 @@ export class Favorites {
       },
     ];
   }
+
+  delete (user) {
+    const filteredEnters = this.entries
+      .filter(entry => entry.login !== user.login) 
+  }
 }
 
 export class FavoritesView extends Favorites {
@@ -44,9 +49,13 @@ export class FavoritesView extends Favorites {
       row.querySelector(".user span").textContent = user.login;
       row.querySelector(".repositories").textContent = user.public_repos;
       row.querySelector(".followers").textContent = user.followers;
-
-      this.tbody.append(row);
-    });
+      row.querySelector(".remove").onclick = () => {
+        const isOK = confirm("Tem certeza que deseja remover essa linha?")
+        if (isOK) {
+          this.delete(user);
+          this.update();
+        }      
+      });
   }
 
   createRow() {
