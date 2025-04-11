@@ -21,9 +21,9 @@ export class Favorites {
     ];
   }
 
-  delete (user) {
-    const filteredEnters = this.entries
-      .filter(entry => entry.login !== user.login) 
+  delete(user) {
+    this.entries = this.entries.filter((entry) => entry.login !== user.login);
+    this.update();
   }
 }
 
@@ -39,7 +39,6 @@ export class FavoritesView extends Favorites {
 
     this.entries.forEach((user) => {
       const row = this.createRow();
-      console.log(row);
 
       row.querySelector(
         ".user img"
@@ -50,12 +49,15 @@ export class FavoritesView extends Favorites {
       row.querySelector(".repositories").textContent = user.public_repos;
       row.querySelector(".followers").textContent = user.followers;
       row.querySelector(".remove").onclick = () => {
-        const isOK = confirm("Tem certeza que deseja remover essa linha?")
+        const isOK = confirm("Tem certeza que deseja remover essa linha?");
         if (isOK) {
           this.delete(user);
           this.update();
-        }      
-      });
+        }
+      };
+
+      this.tbody.append(row);
+    });
   }
 
   createRow() {
