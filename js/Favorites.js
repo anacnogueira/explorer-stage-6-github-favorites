@@ -17,8 +17,6 @@ export class Favorites {
   constructor(root) {
     this.root = document.querySelector(root);
     this.load();
-
-    GithubUser.search("anacnogueira").then((user) => console.log(user));
   }
 
   load() {
@@ -31,6 +29,12 @@ export class Favorites {
 
   async add(username) {
     try {
+      const userExists = this.entries.find((entry) => entry.login === username);
+
+      if (userExists) {
+        throw new Error("Usuário já existe");
+      }
+
       const user = await GithubUser.search(username);
 
       if (user.login === undefined) {
